@@ -1,0 +1,15 @@
+{
+  "id": "gitcode",
+  "name": "GitCode MCP",
+  "description": "GitCode MCP服务，提供GitCode代码托管平台的API接口",
+  "version": "1.0.0",
+  "transport": {
+    "type": "stdio"
+  },
+  "server": {
+    "command": "gitcode_mcp_go"
+  },
+  "environment": {
+    "GITCODE_TOKEN": "<您的GitCode访问令牌>"
+  }
+}
