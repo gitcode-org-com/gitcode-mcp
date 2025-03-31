@@ -7,7 +7,7 @@
     "type": "stdio"
   },
   "server": {
-    "command": "gitcode_mcp_go"
+    "command": "gitcode-mcp"
   },
   "environment": {
     "GITCODE_TOKEN": "<您的GitCode访问令牌>"

@@ -11,9 +11,9 @@ mkdir -p $BUILD_DIR
 
 # 编译MCP服务器
 echo "编译MCP服务器..."
-go build -o $BUILD_DIR/gitcode_mcp_go main.go
+go build -o $BUILD_DIR/gitcode-mcp main.go
 if [ $? -ne 0 ]; then
-    echo "编译失败: gitcode_mcp_go"
+    echo "编译失败: gitcode-mcp"
     exit 1
 fi
 
@@ -23,8 +23,8 @@ cp mcp.json $BUILD_DIR/mcp.json
 
 echo "编译完成！构建结果保存在 $BUILD_DIR 目录中。"
 echo "可执行文件:"
-echo "  - $BUILD_DIR/gitcode_mcp_go: MCP服务器"
+echo "  - $BUILD_DIR/gitcode-mcp: MCP服务器"
 echo ""
 echo "使用说明:"
-echo "  STDIO模式: ./gitcode_mcp_go"
-echo "  SSE模式: MCP_TRANSPORT=sse ./gitcode_mcp_go" 
+echo "  STDIO模式: ./gitcode-mcp"
+echo "  SSE模式: MCP_TRANSPORT=sse ./gitcode-mcp" 

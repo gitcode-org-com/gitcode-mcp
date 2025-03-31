@@ -17,7 +17,7 @@
 {
   "mcpServers": {
     "gitcode": {
-      "command": "gitcode_mcp_go",
+      "command": "gitcode-mcp",
       "args": [],
       "env": {
         "GITCODE_TOKEN": "<您的GitCode访问令牌>",
@@ -71,5 +71,5 @@ cp windsurf_config.json ~/.windsurf/configs/mcp.json
 ## 注意事项
 
 - 确保您的GitCode访问令牌有足够的权限
-- 配置文件中的`command`路径应该指向您已安装的`gitcode_mcp_go`可执行文件
+- 配置文件中的`command`路径应该指向您已安装的`gitcode-mcp`可执行文件
 - 如果您使用了自定义安装位置，请相应调整`command`的值 
