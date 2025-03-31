@@ -12,7 +12,7 @@ import (
 	"net/url"
 	"time"
 	
-	"gitcode_mcp_go/config"
+	"github.com/gitcode-org-com/gitcode-mcp/config"
 )
 
 // 错误类型

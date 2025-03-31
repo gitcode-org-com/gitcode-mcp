@@ -7,7 +7,7 @@ import (
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 	
-	"gitcode_mcp_go/api"
+	"github.com/gitcode-org-com/gitcode-mcp/api"
 )
 
 // AddBranchTools 添加分支相关工具到MCP服务器

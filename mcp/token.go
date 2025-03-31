@@ -4,7 +4,7 @@ import (
 	"os"
 	"sync"
 
-	"gitcode_mcp_go/config"
+	"github.com/gitcode-org-com/gitcode-mcp/config"
 )
 
 // ConfigTokenManager 基于配置的令牌管理器

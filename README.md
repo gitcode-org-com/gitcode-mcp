@@ -22,26 +22,15 @@
 
 ```
 # GitCode API配置
-GITCODE_TOKEN=您的GitCode个人访问令牌
+GITCODE_TOKEN=<您的GitCode访问令牌>
 GITCODE_API_URL=https://api.gitcode.com/api/v5
 
-# 服务器配置
-MCP_SERVER_PORT=8080
-MCP_SERVER_HOST=0.0.0.0
-MCP_LOG_PATH=gitcode_mcp.log
-
 # MCP传输配置
-# 可选值: stdio, sse
+# 可选值: stdio
 MCP_TRANSPORT=stdio
-MCP_SSE_PORT=8000
 
 # API配置
 API_TIMEOUT=30
-
-# 缓存配置
-ENABLE_CACHE=true
-CACHE_TTL=300
-MAX_CACHE_SIZE=100
 ```
 
 ## 安装说明
@@ -50,8 +39,8 @@ MAX_CACHE_SIZE=100
 
 ```bash
 # 克隆仓库
-git clone https://gitcode.com/your-username/gitcode_mcp_go.git
-cd gitcode_mcp_go
+git clone https://github.com/gitcode-org-com/gitcode-mcp.git
+cd gitcode-mcp
 
 # 运行安装脚本
 ./install.sh
@@ -70,11 +59,11 @@ cd gitcode_mcp_go
 
 ```bash
 # 安装最新版本
-go install gitcode.com/your-username/gitcode_mcp_go@latest
+go install github.com/gitcode-org-com/gitcode-mcp@latest
 
 # 或者克隆仓库后安装
-git clone https://gitcode.com/your-username/gitcode_mcp_go.git
-cd gitcode_mcp_go
+git clone https://github.com/gitcode-org-com/gitcode-mcp.git
+cd gitcode-mcp
 go install
 ```
 
@@ -84,8 +73,8 @@ go install
 
 ```bash
 # 克隆仓库
-git clone https://gitcode.com/your-username/gitcode_mcp_go.git
-cd gitcode_mcp_go
+git clone https://github.com/gitcode-org-com/gitcode-mcp.git
+cd gitcode-mcp
 
 # 编译项目
 go build -o gitcode_mcp_go
@@ -115,8 +104,8 @@ chmod +x ~/bin/gitcode_mcp_go
 1. 克隆仓库
 
 ```bash
-git clone https://github.com/gitcode-mcp/gitcode_mcp_go.git
-cd gitcode_mcp_go
+git clone https://github.com/gitcode-org-com/gitcode-mcp.git
+cd gitcode-mcp
 ```
 
 2. 安装依赖
@@ -167,13 +156,25 @@ GitCode MCP Go Server可以作为Cursor编辑器的MCP服务使用，使您能�
    {
      "mcpServers": {
        "gitcode": {
-         "command": "path/to/gitcode_mcp_go",
+         "command": "gitcode_mcp_go",
+         "args": [],
          "env": {
-           "GITCODE_TOKEN": "<你的GitCode访问令牌>"
+           "GITCODE_TOKEN": "<您的GitCode访问令牌>",
+           "GITCODE_API_URL": "https://api.gitcode.com/api/v5"
          }
        }
      }
    }
+   ```
+
+   您也可以直接使用项目提供的配置文件：
+
+   ```bash
+   # 复制Cursor配置文件
+   cp ~/.gitcode_mcp/docs/cursor_config.json ~/cursor-config.json
+   
+   # 编辑配置文件，添加您的GitCode访问令牌
+   nano ~/cursor-config.json
    ```
 
    **方式二：使用SSE模式**
@@ -184,16 +185,20 @@ GitCode MCP Go Server可以作为Cursor编辑器的MCP服务使用，使您能�
        "gitcode": {
          "url": "http://localhost:8000",
          "env": {
-           "GITCODE_TOKEN": "<你的GitCode访问令牌>"
+           "GITCODE_TOKEN": "<您的GitCode访问令牌>"
          }
        }
      }
    }
    ```
 
-3. **使用MCP JSON配置文件**
+3. **支持的平台**
 
-   您也可以直接使用项目提供的`mcp.json`文件进行配置，只需在Cursor的MCP设置中指向该文件路径即可。
+   项目docs目录下提供了各平台的配置文件：
+   - claude_config.json - Claude平台配置
+   - cline_config.json - Cline平台配置
+   - cursor_config.json - Cursor平台配置 
+   - windsurf_config.json - Windsurf平台配置
 
 ### 使用GitCode MCP工具
 
@@ -269,7 +274,7 @@ GitCode MCP Go Server可以作为Cursor编辑器的MCP服务使用，使您能�
 ## 项目结构
 
 ```
-gitcode_mcp_go/
+gitcode-mcp/
 ├── api/                    # GitCode API客户端
 │   ├── client.go           # API客户端主类
 │   ├── repos.go            # 仓库相关API
@@ -280,6 +285,11 @@ gitcode_mcp_go/
 ├── config/                 # 配置管理
 │   ├── config.go           # 配置结构和加载
 │   └── cache.go            # 缓存管理
+├── docs/                   # 文档和配置示例
+│   ├── claude_config.json  # Claude平台配置
+│   ├── cline_config.json   # Cline平台配置
+│   ├── cursor_config.json  # Cursor平台配置
+│   └── windsurf_config.json# Windsurf平台配置
 ├── mcp/                    # MCP服务器实现
 │   ├── server.go           # 服务器管理
 │   ├── token.go            # 令牌管理
@@ -294,6 +304,8 @@ gitcode_mcp_go/
 │   └── prompts/            # 提示模板实现
 │       └── prompts.go      # 提示模板定义
 ├── main.go                 # 主程序入口
+├── install.sh              # 安装脚本
+├── build.sh                # 构建脚本
 ├── mcp.json                # MCP配置文件
 ├── .env.example            # 环境变量示例
 └── README.md               # 说明文档
@@ -366,3 +378,26 @@ go fmt ./...
 ## 许可证
 
 该项目采用MIT许可证。详情请参阅LICENSE文件。
+
+## 平台配置文件
+
+在docs目录下，提供了四个主要AI平台的配置文件示例：
+
+- **Claude平台**: docs/claude_config.json
+- **Cline平台**: docs/cline_config.json  
+- **Cursor平台**: docs/cursor_config.json
+- **Windsurf平台**: docs/windsurf_config.json
+
+这些配置文件已经包含了基本设置，您只需要替换`<您的GitCode访问令牌>`为您自己的访问令牌即可使用。
+
+### 使用配置文件
+
+```bash
+# 复制对应平台的配置文件到适当位置
+cp docs/cursor_config.json ~/cursor-config.json
+
+# 编辑配置文件，添加您的GitCode访问令牌
+nano ~/cursor-config.json
+```
+
+然后根据各平台的配置方法，将配置文件路径添加到相应的设置中。

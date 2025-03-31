@@ -3,7 +3,7 @@ package tools
 import (
 	"github.com/mark3labs/mcp-go/server"
 	
-	"gitcode_mcp_go/api"
+	"github.com/gitcode-org-com/gitcode-mcp/api"
 )
 
 // RegisterAllTools 注册所有工具到MCP服务器

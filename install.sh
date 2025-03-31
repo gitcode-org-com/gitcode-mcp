@@ -27,6 +27,8 @@ CONFIG_DIR="$HOME/.gitcode_mcp"
 # 首先构建项目
 echo -e "${YELLOW}正在构建项目...${NC}"
 go build -o gitcode_mcp_go
+
+# 检查编译结果
 if [ $? -ne 0 ]; then
     echo -e "${RED}编译失败，安装终止${NC}"
     exit 1
@@ -54,7 +56,13 @@ cp mcp.json "$CONFIG_DIR/"
 echo -e "${YELLOW}请输入您的GitCode访问令牌 (如果没有可以按Enter跳过)：${NC}"
 read token
 if [ ! -z "$token" ]; then
-    sed -i '' "s/<您的GitCode访问令牌>/$token/g" "$CONFIG_DIR/.env"
+    # 对于macOS使用sed -i ''
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        sed -i '' "s/<您的GitCode访问令牌>/$token/g" "$CONFIG_DIR/.env"
+    else
+        # 对于Linux使用sed -i
+        sed -i "s/<您的GitCode访问令牌>/$token/g" "$CONFIG_DIR/.env"
+    fi
     echo -e "${GREEN}已更新GitCode令牌${NC}"
 fi
 
@@ -72,8 +80,17 @@ if [ $? -ne 0 ]; then
     # 检查PATH中是否包含用户bin目录
     if [[ ":$PATH:" != *":$USER_BIN:"* ]]; then
         echo -e "${YELLOW}请将 $USER_BIN 添加到您的PATH环境变量中：${NC}"
-        echo -e "echo 'export PATH=\"\$PATH:$USER_BIN\"' >> ~/.bashrc"
-        echo -e "source ~/.bashrc"
+        
+        # 检测用户shell类型
+        if [[ "$SHELL" == */zsh ]]; then
+            echo -e "echo 'export PATH=\"\$PATH:$USER_BIN\"' >> ~/.zshrc"
+            echo -e "source ~/.zshrc"
+        elif [[ "$SHELL" == */bash ]]; then
+            echo -e "echo 'export PATH=\"\$PATH:$USER_BIN\"' >> ~/.bashrc"
+            echo -e "source ~/.bashrc"
+        else
+            echo -e "请将 $USER_BIN 添加到您的PATH环境变量中"
+        fi
     fi
     
     echo -e "${GREEN}已安装到 $USER_BIN/gitcode_mcp_go${NC}"

@@ -2,12 +2,11 @@ package main
 
 import (
 	"log"
-	"os"
-
+	
 	"github.com/joho/godotenv"
 	
-	"gitcode_mcp_go/config"
-	"gitcode_mcp_go/mcp"
+	"github.com/gitcode-org-com/gitcode-mcp/config"
+	"github.com/gitcode-org-com/gitcode-mcp/mcp"
 )
 
 func init() {

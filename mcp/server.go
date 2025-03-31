@@ -8,10 +8,10 @@ import (
 
 	"github.com/mark3labs/mcp-go/server"
 
-	"gitcode_mcp_go/api"
-	"gitcode_mcp_go/config"
-	"gitcode_mcp_go/mcp/prompts"
-	"gitcode_mcp_go/mcp/tools"
+	"github.com/gitcode-org-com/gitcode-mcp/api"
+	"github.com/gitcode-org-com/gitcode-mcp/config"
+	"github.com/gitcode-org-com/gitcode-mcp/mcp/prompts"
+	"github.com/gitcode-org-com/gitcode-mcp/mcp/tools"
 )
 
 // MCPServerOptions 服务器配置选项

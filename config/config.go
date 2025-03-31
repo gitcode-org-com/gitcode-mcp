@@ -12,6 +12,7 @@ type Config struct {
 	// GitCode API配置
 	GitCodeToken  string // GitCode API访问令牌
 	GitCodeAPIURL string // GitCode API基础URL
+	APITimeout    int    // API请求超时时间（秒）
 
 	// MCP配置
 	MCPTransport string // MCP传输方式 (stdio或sse)
@@ -23,6 +24,7 @@ var defaultConfig = Config{
 	GitCodeAPIURL: "https://api.gitcode.com/api/v5",
 	MCPTransport:  "stdio",
 	MCPSSEPort:    8000,
+	APITimeout:    30,
 }
 
 // 全局配置实例
@@ -49,6 +51,12 @@ func Init() error {
 	if ssePort := os.Getenv("MCP_SSE_PORT"); ssePort != "" {
 		if port, err := strconv.Atoi(ssePort); err == nil {
 			GlobalConfig.MCPSSEPort = port
+		}
+	}
+	
+	if apiTimeout := os.Getenv("API_TIMEOUT"); apiTimeout != "" {
+		if timeout, err := strconv.Atoi(apiTimeout); err == nil {
+			GlobalConfig.APITimeout = timeout
 		}
 	}
 
