@@ -1,0 +1,46 @@
+# 二进制文件
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+gitcode_mcp_go
+
+# 测试二进制文件
+*.test
+
+# 覆盖率工具生成的文件
+*.out
+*.prof
+*.cov
+
+# 依赖目录
+/vendor/
+
+# IDE文件
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# 日志文件
+*.log
+
+# 本地配置文件
+.env
+.env.local
+
+# Go工作区文件
+go.work
+
+# 临时目录
+/tmp/
+/temp/
+
+# 编译输出
+/dist/
+/bin/
+
+# 缓存目录
+/.cache/ 
