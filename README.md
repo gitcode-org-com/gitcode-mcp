@@ -44,6 +44,72 @@ CACHE_TTL=300
 MAX_CACHE_SIZE=100
 ```
 
+## 安装说明
+
+### 方法一：使用安装脚本（推荐）
+
+```bash
+# 克隆仓库
+git clone https://gitcode.com/your-username/gitcode_mcp_go.git
+cd gitcode_mcp_go
+
+# 运行安装脚本
+./install.sh
+```
+
+安装脚本会：
+1. 编译项目生成可执行文件
+2. 创建配置目录 `~/.gitcode_mcp`
+3. 复制配置文件到配置目录
+4. 提示输入您的GitCode访问令牌
+5. 将可执行文件安装到系统路径（需要管理员权限）或用户目录
+
+安装完成后，您可以在任何位置运行 `gitcode_mcp_go` 命令。
+
+### 方法二：使用 Go Install
+
+```bash
+# 安装最新版本
+go install gitcode.com/your-username/gitcode_mcp_go@latest
+
+# 或者克隆仓库后安装
+git clone https://gitcode.com/your-username/gitcode_mcp_go.git
+cd gitcode_mcp_go
+go install
+```
+
+使用 Go Install 安装后，程序会被安装到 `$GOPATH/bin` 目录下。请确保该目录已添加到您的 PATH 环境变量中。
+
+### 方法三：手动编译安装
+
+```bash
+# 克隆仓库
+git clone https://gitcode.com/your-username/gitcode_mcp_go.git
+cd gitcode_mcp_go
+
+# 编译项目
+go build -o gitcode_mcp_go
+
+# 复制到系统路径（需要管理员权限）
+sudo cp gitcode_mcp_go /usr/local/bin/
+sudo chmod +x /usr/local/bin/gitcode_mcp_go
+
+# 或者复制到用户目录
+mkdir -p ~/bin
+cp gitcode_mcp_go ~/bin/
+chmod +x ~/bin/gitcode_mcp_go
+# 确保 ~/bin 在您的 PATH 中
+```
+
+## 配置
+
+首次运行前，请确保设置了您的GitCode访问令牌：
+
+1. 创建配置目录：`mkdir -p ~/.gitcode_mcp`
+2. 复制示例配置：`cp .env.example ~/.gitcode_mcp/.env`
+3. 编辑配置文件：`nano ~/.gitcode_mcp/.env`
+4. 设置您的访问令牌：`GITCODE_TOKEN=您的访问令牌`
+
 ## 快速开始
 
 1. 克隆仓库
