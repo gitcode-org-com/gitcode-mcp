@@ -271,46 +271,6 @@ GitCode MCP Go Server可以作为Cursor编辑器的MCP服务使用，使您能�
 在当前仓库中搜索所有使用了"Redis缓存"的代码
 ```
 
-## 项目结构
-
-```
-gitcode-mcp/
-├── api/                    # GitCode API客户端
-│   ├── client.go           # API客户端主类
-│   ├── repos.go            # 仓库相关API
-│   ├── branches.go         # 分支相关API
-│   ├── issues.go           # Issue相关API
-│   ├── pulls.go            # PR相关API
-│   └── search.go           # 搜索相关API
-├── config/                 # 配置管理
-│   ├── config.go           # 配置结构和加载
-│   └── cache.go            # 缓存管理
-├── docs/                   # 文档和配置示例
-│   ├── claude_config.json  # Claude平台配置
-│   ├── cline_config.json   # Cline平台配置
-│   ├── cursor_config.json  # Cursor平台配置
-│   └── windsurf_config.json# Windsurf平台配置
-├── mcp/                    # MCP服务器实现
-│   ├── server.go           # 服务器管理
-│   ├── token.go            # 令牌管理
-│   ├── tools/              # 工具实现
-│   │   ├── tools.go        # 工具注册
-│   │   ├── utils.go        # 工具辅助函数
-│   │   ├── repos.go        # 仓库相关工具
-│   │   ├── branches.go     # 分支相关工具
-│   │   ├── issues.go       # Issue相关工具
-│   │   ├── pulls.go        # PR相关工具
-│   │   └── search.go       # 搜索相关工具
-│   └── prompts/            # 提示模板实现
-│       └── prompts.go      # 提示模板定义
-├── main.go                 # 主程序入口
-├── install.sh              # 安装脚本
-├── build.sh                # 构建脚本
-├── mcp.json                # MCP配置文件
-├── .env.example            # 环境变量示例
-└── README.md               # 说明文档
-```
-
 ## MCP工具清单
 
 GitCode MCP提供以下工具：
@@ -333,47 +293,6 @@ GitCode MCP提供以下工具：
 | search_repositories | 搜索仓库 | query |
 | search_issues | 搜索Issues | query |
 | search_users | 搜索用户 | query |
-
-## 提示模板清单
-
-| 模板名称 | 描述 | 参数 |
-|---------|------|-----|
-| create_issue | 生成创建Issue的提示文本 | owner, repo, title, body? |
-| create_pull_request | 生成创建Pull Request的提示文本 | owner, repo, title, head, base, body? |
-| search_code | 生成搜索代码的提示文本 | query |
-
-## 与Python版本的区别
-
-本Go实现版本保持了与原Python版本相同的核心功能和API设计，主要区别在于：
-
-1. 使用Go语言标准库实现，无需额外的Python环境配置
-2. 支持标准MCP协议，使用mark3labs/mcp-go SDK实现
-3. 并发处理模型改进，提高了高负载下的性能
-4. 内存占用更低，运行速度更快
-5. 打包和部署更加简便，可以编译为单一可执行文件
-6. 支持STDIO和SSE传输方式
-
-## 开发与贡献
-
-欢迎贡献代码或提交问题报告。请确保在提交Pull Request之前，先运行测试并确保代码格式符合Go标准。
-
-```bash
-# 运行测试
-go test ./...
-
-# 格式化代码
-go fmt ./...
-```
-
-## 构建与部署
-
-使用提供的构建脚本生成可执行文件：
-
-```bash
-./build.sh
-```
-
-构建完成后，可执行文件将保存在`./bin`目录中。
 
 ## 许可证
 
