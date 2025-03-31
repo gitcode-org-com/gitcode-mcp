@@ -46,7 +46,7 @@ cd gitcode-mcp
 4. 提示输入您的GitCode访问令牌
 5. 将可执行文件安装到系统路径（需要管理员权限）或用户目录
 
-安装完成后，您可以在任何位置运行 `gitcode_mcp_go` 命令。
+安装完成后，您可以在任何位置运行 `gitcode-mcp` 命令。
 
 ### 方法二：使用 Go Install
 
@@ -62,7 +62,7 @@ go install github.com/gitcode-org-com/gitcode-mcp@latest
 1. 运行MCP服务器
 
 ```bash
-gitcode_mcp_go
+gitcode-mcp
 ```
 
 2. 配置AI平台
@@ -95,4 +95,8 @@ GitCode MCP提供以下工具：
 | search_repositories | 搜索仓库 | query |
 | search_issues | 搜索Issues | query |
 | search_users | 搜索用户 | query |
+
+## 许可证
+
+该项目采用MIT许可证。详情请参阅LICENSE文件。
 

@@ -26,7 +26,7 @@ CONFIG_DIR="$HOME/.gitcode_mcp"
 
 # 首先构建项目
 echo -e "${YELLOW}正在构建项目...${NC}"
-go build -o gitcode_mcp_go
+go build -o gitcode-mcp
 
 # 检查编译结果
 if [ $? -ne 0 ]; then
@@ -38,7 +38,7 @@ if [ "$DRY_RUN" = true ]; then
     echo -e "${YELLOW}[模拟模式] 将执行以下操作：${NC}"
     echo -e "- 创建配置目录: $CONFIG_DIR"
     echo -e "- 复制配置文件到: $CONFIG_DIR"
-    echo -e "- 安装可执行文件到: $INSTALL_DIR/gitcode_mcp_go"
+    echo -e "- 安装可执行文件到: $INSTALL_DIR/gitcode-mcp"
     echo -e "${GREEN}模拟安装完成。未进行实际更改。${NC}"
     exit 0
 fi
@@ -68,14 +68,14 @@ fi
 
 # 复制可执行文件到系统路径需要sudo权限
 echo -e "${YELLOW}正在将可执行文件复制到 $INSTALL_DIR (可能需要管理员权限)${NC}"
-sudo cp gitcode_mcp_go "$INSTALL_DIR/"
+sudo cp gitcode-mcp "$INSTALL_DIR/"
 if [ $? -ne 0 ]; then
     echo -e "${RED}无法复制文件到 $INSTALL_DIR，请检查权限${NC}"
     echo -e "${YELLOW}尝试安装到用户目录...${NC}"
     
     USER_BIN="$HOME/bin"
     mkdir -p "$USER_BIN"
-    cp gitcode_mcp_go "$USER_BIN/"
+    cp gitcode-mcp "$USER_BIN/"
     
     # 检查PATH中是否包含用户bin目录
     if [[ ":$PATH:" != *":$USER_BIN:"* ]]; then
@@ -93,17 +93,17 @@ if [ $? -ne 0 ]; then
         fi
     fi
     
-    echo -e "${GREEN}已安装到 $USER_BIN/gitcode_mcp_go${NC}"
+    echo -e "${GREEN}已安装到 $USER_BIN/gitcode-mcp${NC}"
 else
     # 设置可执行权限
-    sudo chmod +x "$INSTALL_DIR/gitcode_mcp_go"
-    echo -e "${GREEN}已成功安装到 $INSTALL_DIR/gitcode_mcp_go${NC}"
+    sudo chmod +x "$INSTALL_DIR/gitcode-mcp"
+    echo -e "${GREEN}已成功安装到 $INSTALL_DIR/gitcode-mcp${NC}"
 fi
 
 echo -e "${GREEN}GitCode MCP Server 安装完成！${NC}"
 echo -e "${YELLOW}配置文件位置: $CONFIG_DIR${NC}"
 echo -e "${YELLOW}使用方法:${NC}"
-echo -e "  STDIO模式: gitcode_mcp_go"
+echo -e "  STDIO模式: gitcode-mcp"
 echo -e "  配置文件: 编辑 $CONFIG_DIR/.env 设置您的GitCode令牌"
 echo -e "  平台配置文件: 位于 $CONFIG_DIR/docs/ 目录下"
 echo -e ""

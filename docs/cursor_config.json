@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "gitcode": {
-      "command": "gitcode_mcp_go",
+      "command": "gitcode-mcp",
       "args": [],
       "env": {
         "GITCODE_TOKEN": "<您的GitCode访问令牌>",
