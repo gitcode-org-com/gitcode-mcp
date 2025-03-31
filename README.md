@@ -96,6 +96,3 @@ GitCode MCP提供以下工具：
 | search_issues | 搜索Issues | query |
 | search_users | 搜索用户 | query |
 
-## 许可证
-
-该项目采用MIT许可证。详情请参阅LICENSE文件。
