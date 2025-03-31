@@ -6,6 +6,17 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' # 无颜色
 
+# 解析命令行参数
+DRY_RUN=false
+for arg in "$@"; do
+  case $arg in
+    --dry-run)
+      DRY_RUN=true
+      shift
+      ;;
+  esac
+done
+
 echo -e "${GREEN}开始安装 GitCode MCP Server...${NC}"
 
 # 设置版本号和安装目录
@@ -19,6 +30,15 @@ go build -o gitcode_mcp_go
 if [ $? -ne 0 ]; then
     echo -e "${RED}编译失败，安装终止${NC}"
     exit 1
+fi
+
+if [ "$DRY_RUN" = true ]; then
+    echo -e "${YELLOW}[模拟模式] 将执行以下操作：${NC}"
+    echo -e "- 创建配置目录: $CONFIG_DIR"
+    echo -e "- 复制配置文件到: $CONFIG_DIR"
+    echo -e "- 安装可执行文件到: $INSTALL_DIR/gitcode_mcp_go"
+    echo -e "${GREEN}模拟安装完成。未进行实际更改。${NC}"
+    exit 0
 fi
 
 # 检查权限
